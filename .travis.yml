@@ -1,2 +1,7 @@
 language: objective-c
-script: xctool test -project HelloWorld.xcodeproj -scheme HelloWorld -sdk iphonesimulator8.1 -destination "platform=iOS Simulator,OS=8.1,name=iPhone 6"
+install:
+  - brew update
+  - brew install xctool
+
+script:
+  - xctool test -project HelloWorld.xcodeproj -scheme HelloWorld -sdk iphonesimulator8.3 -destination "platform=iOS Simulator,OS=8.3,name=iPhone 6"
