@@ -1,8 +1,19 @@
 language: objective-c
-install:
-  - brew update
-  - brew unlink xctool
-  - brew install xctool
+osx_image: beta-xcode6.3
+cache:
+  - bundler
+  - cocoapods
+before_install:
+  - gem install xcpretty -N
+  - gem install cocoapods --pre --quiet
+  - gem install slather
+  - pod setup --silent
+  - pod repo update --silent
 
 script:
-  - xctool test -project HelloWorld.xcodeproj -scheme HelloWorld -sdk iphonesimulator8.1 -destination "platform=iOS Simulator,OS=8.1,name=iPhone 6"
+  - set -o pipefail
+  - xcodebuild -project HelloWorld.xcodeproj -sdk iphonesimulator8.3 -scheme HelloWorld test | xcpretty -c
+
+after_success:
+  - slather
+  #- xctool test -project HelloWorld.xcodeproj -scheme HelloWorld -sdk iphonesimulator8.3 -destination "platform=iOS Simulator,OS=8.3,name=iPhone 6"
