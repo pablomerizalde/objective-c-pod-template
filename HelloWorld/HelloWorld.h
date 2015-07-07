@@ -2,16 +2,18 @@
 //  HelloWorld.h
 //  HelloWorld
 //
-//  Created by Gergely Orosz on 31/05/2015.
+//  Created by Gergely Orosz on 07/07/2015.
 //  Copyright (c) 2015 GergelyOrosz. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface HelloWorld : NSObject
+//! Project version number for HelloWorld.
+FOUNDATION_EXPORT double HelloWorldVersionNumber;
 
--(NSString*) sayHello;
+//! Project version string for HelloWorld.
+FOUNDATION_EXPORT const unsigned char HelloWorldVersionString[];
 
--(NSString*) sayHelloWithName: (NSString*) name;
+// In this header, you should import all the public headers of your framework using statements like #import <HelloWorld/PublicHeader.h>
 
-@end
+
