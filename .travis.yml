@@ -1,12 +1,16 @@
 language: objective-c
+osx_image: beta-xcode6.3
+cache:
+  - bundler
+  - cocoapods
 before_install:
-  - gem install xcpretty -N
-  - gem install cocoapods --pre --quiet
-  - gem install slather
+  - gem install xcpretty -N --no-ri --no-rdoc
+  - gem install cocoapods --pre --quiet --no-ri --no-rdoc
+  - gem install slather --no-ri --no-rdoc
   - pod setup --silent
   - pod repo update --silent
 script:
   - set -o pipefail
-  - xcodebuild -project HelloWorld.xcodeproj -sdk iphonesimulator -scheme HelloWorld test | xcpretty -c
+  - xcodebuild test -project HelloWorld.xcodeproj -sdk iphonesimulator -scheme HelloWorld -configuration Debug OBJROOT="$PWD/build" SYMROOT="$PWD/build" ONLY_ACTIVE_ARCH=NO GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -c
 after_success:
   - slather
